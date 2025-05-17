@@ -9,10 +9,9 @@ export default defineConfig({
   plugins: [vue(), vueDevTools()],
   server: {
     proxy: {
-      '/api': {
+      '^/(list|element)': {
         target: 'https://api.test-webest.ru',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
