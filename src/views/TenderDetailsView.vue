@@ -1,11 +1,13 @@
 <template>
-  <div v-if="store.isLoading">Загрузка...</div>
-  <div v-else-if="store.selectedTender">
-    <h1>{{ store.selectedTender.title }}</h1>
-    <p>{{ store.selectedTender.description }}</p>
-  </div>
-  <div v-else>
-    <p>Тендер не найден</p>
+  <div class="container">
+    <div v-if="store.isLoading">Загрузка...</div>
+    <div v-else-if="store.selectedTender">
+      <h1>{{ store.selectedTender.title }}</h1>
+      <p>{{ store.selectedTender.description }}</p>
+    </div>
+    <div v-else>
+      <p>Тендер не найден</p>
+    </div>
   </div>
 </template>
 

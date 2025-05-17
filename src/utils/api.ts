@@ -23,18 +23,13 @@ export async function fetchData<T>(url: string, options: RequestInit = {}): Prom
       }
     }
 
-    const text = await response.text()
-
-    if (!text) {
-      return { data: null, error: 'Empty response body from server' }
-    }
-
-    const data = JSON.parse(text)
+    const data = await response.json()
     return { data, error: null }
-  } catch (error) {
+  } catch (err) {
+    console.error('Fetch error:', err)
     return {
       data: null,
-      error: error instanceof Error ? error.message : String(error),
+      error: err instanceof Error ? err.message : String(err),
     }
   }
 }
