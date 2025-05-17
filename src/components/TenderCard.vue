@@ -1,10 +1,8 @@
 <script setup lang="ts">
+import type { Item } from '@/types'
+
 defineProps<{
-  item: {
-    id: number
-    title: string
-    description: string
-  }
+  item: Item
 }>()
 </script>
 <template>

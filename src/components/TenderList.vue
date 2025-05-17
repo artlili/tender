@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import TenderCard from '@/components/TenderCard.vue'
+import type { Item } from '@/types'
 
 defineProps<{
-  items: { id: number; title: string; description: string }[]
+  items: Item[]
   page: number
 }>()
 </script>

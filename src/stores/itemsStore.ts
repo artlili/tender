@@ -1,19 +1,6 @@
 import { defineStore } from 'pinia'
 import { fetchData } from '@/utils/api'
-
-interface Item {
-  id: number
-  title: string
-  description: string
-  // добавь другие поля, если они есть в API
-}
-
-interface ApiResponse {
-  data: Item[]
-  count: number
-  next: string | null
-  previous: string | null
-}
+import type { Item, ApiResponse } from '@/types'
 
 export const useItemsStore = defineStore('items', {
   state: () => ({

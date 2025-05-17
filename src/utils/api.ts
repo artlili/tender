@@ -1,7 +1,4 @@
-export type ApiResult<T> = {
-  data: T | null
-  error: string | null
-}
+import type { ApiResult } from '@/types'
 
 export async function fetchData<T>(url: string, options: RequestInit = {}): Promise<ApiResult<T>> {
   try {
