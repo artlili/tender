@@ -41,21 +41,6 @@ export const useItemsStore = defineStore('items', {
     totalPages(state): number {
       return Math.ceil(this.filteredAllItems.length / state.itemsPerPage)
     },
-    // paginatedItems(state) {
-    //   const start = (state.currentPage - 1) * state.itemsPerPage
-    //   return state.allItems.slice(start, start + state.itemsPerPage)
-    // },
-    //
-    // totalPages(state) {
-    //   return Math.ceil(state.allItems.length / state.itemsPerPage)
-    // },
-    //
-    // filteredItems(state) {
-    //   if (!state.searchQuery) return state.paginatedItems
-    //   return state.allItems
-    //     .filter((item) => item.title.toLowerCase().includes(state.searchQuery.toLowerCase()))
-    //     .slice((state.currentPage - 1) * state.itemsPerPage, state.currentPage * state.itemsPerPage)
-    // },
   },
   actions: {
     async loadAllItems() {
