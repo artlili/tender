@@ -7,6 +7,15 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), vueDevTools()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api.test-webest.ru',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {
