@@ -1,6 +1,8 @@
 <template>
   <header class="layout-header">
-    <h1>Тендеры</h1>
+    <router-link to="/" class="logo-link">
+      <h1>Тендеры</h1>
+    </router-link>
   </header>
 </template>
 
@@ -10,12 +12,21 @@
   text-align: center;
   background: $gradient-primary;
 
-  h1 {
-    color: white;
-  }
-
-  a:hover {
+  .logo-link {
+    display: inline-block;
     text-decoration: none;
+
+    h1 {
+      color: white;
+      transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+    }
+
+    &:hover h1 {
+      transform: scale(1.02);
+      text-decoration: none;
+    }
   }
 }
 </style>
