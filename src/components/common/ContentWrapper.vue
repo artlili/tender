@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BaseLoader from '@/components/ui/BaseLoader.vue'
+
 defineProps<{
   isLoading: boolean
   hasData: boolean
@@ -6,7 +8,7 @@ defineProps<{
 </script>
 <template>
   <div>
-    <div v-if="isLoading">Загрузка...</div>
+    <BaseLoader v-if="isLoading" />
 
     <div v-else-if="hasData">
       <slot />
