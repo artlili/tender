@@ -1,39 +1,37 @@
-# tender
+# Tender App
 
-This template should help get you started developing with Vue 3 in Vite.
+Интерфейс для просмотра тендеров с поддержкой пагинации, поиска и детальной страницы.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🧰 Стек
 
-## Type Support for `.vue` Imports in TS
+- Vue 3 + Composition API
+- TypeScript
+- Pinia
+- SCSS
+- Fetch API (без сторонних обёрток)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## ⚙️ Требования
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Node.js**: `v22.x`
+  > (рекомендуется использовать [nvm](https://github.com/nvm-sh/nvm) для управления версиями)
 
-## Project Setup
+---
 
-```sh
+## 🚀 Установка и запуск
+
+```bash
+# Установить зависимости
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Запустить dev-сервер
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
+## 📦 Деплой проекта
 
-```sh
-npm run build
-```
+Проект развёрнут на [Vercel](https://vercel.com/) и доступен по адресу:
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+🔗 [https://tender-xi.vercel.app](https://tender-xi.vercel.app)
