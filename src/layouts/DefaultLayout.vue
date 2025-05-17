@@ -1,4 +1,9 @@
-<!-- src/layouts/DefaultLayout.vue -->
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+</script>
+
 <template>
   <div class="layout">
     <header class="layout-header">
@@ -7,7 +12,7 @@
 
     <main class="layout-main">
       <Transition name="fade-view" mode="out-in">
-        <router-view :key="$route.fullPath" />
+        <router-view :key="route.fullPath" />
       </Transition>
     </main>
 
