@@ -22,12 +22,24 @@ defineProps<{
   border: 1px solid $color-border;
   border-radius: 0.5rem;
   background: $color-white;
+}
+
+.title-link {
+  text-decoration: none;
+  color: $color-text;
 
   h3 {
+    color: inherit;
+    margin: 0;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.3;
-    margin: 0;
+    transition: color 0.2s ease;
+  }
+
+  &:hover h3 {
+    color: $color-primary;
+    text-decoration: none;
   }
 }
 
