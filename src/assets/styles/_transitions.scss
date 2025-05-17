@@ -1,0 +1,21 @@
+/* transitions.scss */
+
+.fade-view-enter-active,
+.fade-view-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-view-enter-from,
+.fade-view-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

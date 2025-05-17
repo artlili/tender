@@ -6,7 +6,9 @@
     </header>
 
     <main class="layout-main">
-      <router-view />
+      <Transition name="fade-view" mode="out-in">
+        <router-view :key="$route.fullPath" />
+      </Transition>
     </main>
 
     <footer class="layout-footer">
