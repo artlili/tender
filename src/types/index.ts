@@ -2,6 +2,10 @@ export interface Item {
   id: number
   title: string
   description: string
+  awarded_value: string
+  awarded_currency: string
+  deadline_date: string
+  place: string
 }
 
 export type ApiResult<T> = {

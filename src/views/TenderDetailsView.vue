@@ -25,7 +25,16 @@ function goBack() {
     <ContentWrapper :isLoading="store.isLoading" :hasData="!!store.selectedTender">
       <div class="tender-details">
         <h1>{{ store.selectedTender?.title }}</h1>
-        <p>{{ store.selectedTender?.description }}</p>
+        <p class="description">{{ store.selectedTender?.description }}</p>
+
+        <ul class="meta">
+          <li>
+            <strong>Сумма:</strong>
+            {{ store.selectedTender?.awarded_value }} {{ store.selectedTender?.awarded_currency }}
+          </li>
+          <li><strong>Крайний срок:</strong> {{ store.selectedTender?.deadline_date }}</li>
+          <li><strong>Место:</strong> {{ store.selectedTender?.place }}</li>
+        </ul>
       </div>
     </ContentWrapper>
   </div>
@@ -33,13 +42,29 @@ function goBack() {
 
 <style scoped lang="scss">
 .tender-details {
-  padding: 2rem;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 2rem auto;
 
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+  .description {
+    margin: 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .meta {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+
+      strong {
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
 </style>
