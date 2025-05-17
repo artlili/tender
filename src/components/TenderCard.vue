@@ -9,6 +9,7 @@ defineProps<{
   <div class="tender-card">
     <router-link :to="`/tenders/${item.id}`" class="title-link">
       <h3>{{ item.title }}</h3>
+      <p class="place"><strong>Место:</strong> {{ item.place }}</p>
     </router-link>
     <p class="description">{{ item.description }}</p>
   </div>
@@ -39,6 +40,12 @@ defineProps<{
     color: $color-primary;
     text-decoration: none;
   }
+}
+
+.place {
+  font-size: 0.85rem;
+  color: $color-secondary;
+  margin-top: 0.25rem;
 }
 
 .description {
