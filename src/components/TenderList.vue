@@ -1,10 +1,12 @@
 <!-- src/components/TenderList.vue -->
 <template>
-  <div class="tenders-grid">
-    <div v-for="item in items.slice(0, 30)" :key="item.id" class="tender-card">
-      {{ item.title }}
+  <Transition name="fade" mode="out-in">
+    <div class="tenders-grid">
+      <div v-for="item in items.slice(0, 30)" :key="item.id" class="tender-card">
+        {{ item.title }}
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -36,5 +38,15 @@ defineProps<{
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   background: #fff;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
