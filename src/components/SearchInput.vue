@@ -31,13 +31,13 @@ const onInput = (event: Event) => {
   &__field {
     width: 100%;
     padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid $color-border;
     border-radius: 0.5rem;
     font-size: 1rem;
     transition: border 0.2s ease;
 
     &:focus {
-      border-color: #007bff;
+      border-color: $color-primary;
       outline: none;
     }
   }
