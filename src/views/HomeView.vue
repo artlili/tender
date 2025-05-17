@@ -2,16 +2,20 @@
 import { ref, onMounted } from 'vue'
 import SearchInput from '@/components/SearchInput.vue'
 import TenderList from '@/components/TenderList.vue'
+import Paginator from '@/components/Paginator.vue'
 
 import { useItemsStore } from '@/stores/itemsStore'
 
 const store = useItemsStore()
+const searchQuery = ref('')
 
 onMounted(() => {
-  store.loadItems(1) // первая страница
+  store.loadAllItems() // первая страница
 })
 
-const searchQuery = ref('')
+const changePage = (page: number) => {
+  store.setPage(page)
+}
 </script>
 
 <template>
@@ -19,7 +23,9 @@ const searchQuery = ref('')
     <SearchInput v-model="searchQuery" placeholder="Поиск..." />
     <div v-if="store.isLoading">Загрузка...</div>
     <div v-else-if="store.error">{{ store.error }}</div>
-
-    <TenderList v-else :items="store.items" />
+    <div v-else>
+      <TenderList :items="store.paginatedItems" :page="store.currentPage" />
+      <Paginator :page="store.currentPage" :totalPages="store.totalPages" @change="changePage" />
+    </div>
   </div>
 </template>
