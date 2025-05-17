@@ -1,5 +1,3 @@
-// src/utils/api.ts
-
 export type ApiResult<T> = {
   data: T | null
   error: string | null

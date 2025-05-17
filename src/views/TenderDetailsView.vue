@@ -1,29 +1,33 @@
-<template>
-  <div class="container">
-    <div v-if="store.isLoading">Загрузка...</div>
-    <div v-else-if="store.selectedTender">
-      <h1>{{ store.selectedTender.title }}</h1>
-      <p>{{ store.selectedTender.description }}</p>
-    </div>
-    <div v-else>
-      <p>Тендер не найден</p>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 import { useItemsStore } from '@/stores/itemsStore'
+import BaseButton from '@/components/ui/BaseButton.vue'
+import ContentWrapper from '@/components/common/ContentWrapper.vue'
 
 const route = useRoute()
+const router = useRouter()
 const store = useItemsStore()
 
 onMounted(() => {
   const id = Number(route.params.id)
   store.loadTenderById(id)
 })
+
+function goBack() {
+  router.push({ path: '/', query: { page: store.currentPage.toString() } })
+}
 </script>
+
+<template>
+  <div class="container">
+    <BaseButton variant="primary" @click="goBack">Назад</BaseButton>
+    <ContentWrapper :isLoading="store.isLoading" :hasData="!!store.selectedTender">
+      <h1>{{ store.selectedTender?.title }}</h1>
+      <p>{{ store.selectedTender?.description }}</p>
+    </ContentWrapper>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .tender-details {

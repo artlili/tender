@@ -1,9 +1,3 @@
-<template>
-  <form @submit.prevent>
-    <input type="text" v-model="query" placeholder="Поиск по названию..." class="search-input" />
-  </form>
-</template>
-
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useItemsStore } from '@/stores/itemsStore'
@@ -15,6 +9,12 @@ watch(query, (val) => {
   store.setSearchQuery(val)
 })
 </script>
+
+<template>
+  <form @submit.prevent>
+    <input type="text" v-model="query" placeholder="Поиск по названию..." class="search-input" />
+  </form>
+</template>
 
 <style scoped lang="scss">
 .search-input {

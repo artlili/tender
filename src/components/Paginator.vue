@@ -1,3 +1,14 @@
+<script setup lang="ts">
+defineProps<{
+  page: number
+  totalPages: number
+}>()
+
+defineEmits<{
+  (e: 'change', newPage: number): void
+}>()
+</script>
+
 <template>
   <div class="paginator">
     <button :disabled="page <= 1" @click="$emit('change', page - 1)">‹</button>
@@ -14,17 +25,6 @@
     <button :disabled="page >= totalPages" @click="$emit('change', page + 1)">›</button>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  page: number
-  totalPages: number
-}>()
-
-defineEmits<{
-  (e: 'change', newPage: number): void
-}>()
-</script>
 
 <style scoped lang="scss">
 .paginator {

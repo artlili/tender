@@ -1,4 +1,10 @@
-<!-- src/components/TenderList.vue -->
+<script setup lang="ts">
+defineProps<{
+  items: { id: number; title: string; description: string }[]
+  page: number
+}>()
+</script>
+
 <template>
   <Transition name="fade" mode="out-in">
     <div class="tenders-grid" :key="page">
@@ -11,13 +17,6 @@
     </div>
   </Transition>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  items: { id: number; title: string; description: string }[]
-  page: number
-}>()
-</script>
 
 <style scoped lang="scss">
 .tenders-grid {

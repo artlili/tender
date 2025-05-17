@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import HeaderBar from '@/components/common/HeaderBar.vue'
+import FooterBar from '@/components/common/FooterBar.vue'
 
 const route = useRoute()
 </script>
 
 <template>
   <div class="layout">
-    <header class="layout-header">
-      <h1>Тендеры</h1>
-    </header>
+    <HeaderBar />
 
     <main class="layout-main">
       <Transition name="fade-view" mode="out-in">
@@ -16,9 +16,7 @@ const route = useRoute()
       </Transition>
     </main>
 
-    <footer class="layout-footer">
-      <p>© {{ new Date().getFullYear() }} TenderApp</p>
-    </footer>
+    <FooterBar />
   </div>
 </template>
 
@@ -28,27 +26,9 @@ const route = useRoute()
   flex-direction: column;
   min-height: 100vh;
 
-  &-header {
-    padding: 1rem;
-    text-align: center;
-    background: $gradient-primary;
-
-    h1 {
-      color: white;
-    }
-  }
-
   &-main {
     flex-grow: 1;
     padding: 2rem;
-  }
-
-  &-footer {
-    padding: 1rem;
-    background: $color-light;
-    text-align: center;
-    font-size: 0.8rem;
-    color: $color-muted;
   }
 }
 </style>
