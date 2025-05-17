@@ -6,6 +6,7 @@ import Paginator from '@/components/Paginator.vue'
 
 import { useItemsStore } from '@/stores/itemsStore'
 import { useRoute, useRouter } from 'vue-router'
+import ContentWrapper from '@/components/common/ContentWrapper.vue'
 
 const store = useItemsStore()
 const route = useRoute()
@@ -33,11 +34,9 @@ const changePage = (newPage: number) => {
 <template>
   <div class="container">
     <SearchInput v-model="searchQuery" placeholder="Поиск..." />
-    <div v-if="store.isLoading">Загрузка...</div>
-    <div v-else-if="store.error">{{ store.error }}</div>
-    <div v-else>
+    <ContentWrapper :isLoading="store.isLoading" :hasData="!!store.currentPage">
       <TenderList :items="store.filteredItems" :page="store.currentPage" />
       <Paginator :page="store.currentPage" :totalPages="store.totalPages" @change="changePage" />
-    </div>
+    </ContentWrapper>
   </div>
 </template>
