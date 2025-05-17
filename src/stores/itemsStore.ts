@@ -3,12 +3,13 @@ import { fetchData } from '@/utils/api'
 
 interface Item {
   id: number
-  name: string
+  title: string
+  description: string
   // добавь другие поля, если они есть в API
 }
 
 interface ApiResponse {
-  results: Item[]
+  data: Item[]
   count: number
   next: string | null
   previous: string | null
@@ -36,7 +37,7 @@ export const useItemsStore = defineStore('items', {
         this.items = []
         this.total = 0
       } else {
-        this.items = data?.results || []
+        this.items = data?.data || []
         this.total = data?.count || 0
       }
 
