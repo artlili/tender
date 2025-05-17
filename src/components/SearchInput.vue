@@ -11,8 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits } from 'vue'
-
 defineProps<{
   modelValue: string
   placeholder?: string
