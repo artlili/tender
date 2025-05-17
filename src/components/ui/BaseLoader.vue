@@ -15,8 +15,8 @@
 .spinner {
   width: 32px;
   height: 32px;
-  border: 4px solid #e5e7eb; // light gray
-  border-top-color: #007bff; // main blue
+  border: 4px solid $color-light;
+  border-top-color: $color-primary;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
