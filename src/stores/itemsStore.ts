@@ -21,18 +21,41 @@ export const useItemsStore = defineStore('items', {
     itemsPerPage: 30,
     currentPage: 1,
     selectedTender: null as Item | null,
+    searchQuery: '',
     isLoading: false,
     error: null as string | null,
   }),
   getters: {
-    paginatedItems(state) {
-      const start = (state.currentPage - 1) * state.itemsPerPage
-      return state.allItems.slice(start, start + state.itemsPerPage)
+    filteredAllItems(state) {
+      if (!state.searchQuery) return state.allItems
+      return state.allItems.filter((item) =>
+        item.title.toLowerCase().includes(state.searchQuery.toLowerCase()),
+      )
     },
 
-    totalPages(state) {
-      return Math.ceil(state.allItems.length / state.itemsPerPage)
+    filteredItems(state): Item[] {
+      const start = (state.currentPage - 1) * state.itemsPerPage
+      return this.filteredAllItems.slice(start, start + state.itemsPerPage)
     },
+
+    totalPages(state): number {
+      return Math.ceil(this.filteredAllItems.length / state.itemsPerPage)
+    },
+    // paginatedItems(state) {
+    //   const start = (state.currentPage - 1) * state.itemsPerPage
+    //   return state.allItems.slice(start, start + state.itemsPerPage)
+    // },
+    //
+    // totalPages(state) {
+    //   return Math.ceil(state.allItems.length / state.itemsPerPage)
+    // },
+    //
+    // filteredItems(state) {
+    //   if (!state.searchQuery) return state.paginatedItems
+    //   return state.allItems
+    //     .filter((item) => item.title.toLowerCase().includes(state.searchQuery.toLowerCase()))
+    //     .slice((state.currentPage - 1) * state.itemsPerPage, state.currentPage * state.itemsPerPage)
+    // },
   },
   actions: {
     async loadAllItems() {
@@ -69,6 +92,10 @@ export const useItemsStore = defineStore('items', {
       }
 
       this.isLoading = false
+    },
+    setSearchQuery(query: string) {
+      this.searchQuery = query
+      this.setPage(1)
     },
   },
 })

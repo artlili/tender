@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import SearchInput from '@/components/SearchInput.vue'
+import SearchInput from '@/components/TenderSearch.vue'
 import TenderList from '@/components/TenderList.vue'
 import Paginator from '@/components/Paginator.vue'
 
@@ -36,7 +36,7 @@ const changePage = (newPage: number) => {
     <div v-if="store.isLoading">Загрузка...</div>
     <div v-else-if="store.error">{{ store.error }}</div>
     <div v-else>
-      <TenderList :items="store.paginatedItems" :page="store.currentPage" />
+      <TenderList :items="store.filteredAllItems" :page="store.currentPage" />
       <Paginator :page="store.currentPage" :totalPages="store.totalPages" @change="changePage" />
     </div>
   </div>
