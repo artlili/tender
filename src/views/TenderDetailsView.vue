@@ -23,8 +23,10 @@ function goBack() {
   <div class="container">
     <BaseButton variant="primary" @click="goBack">Назад</BaseButton>
     <ContentWrapper :isLoading="store.isLoading" :hasData="!!store.selectedTender">
-      <h1>{{ store.selectedTender?.title }}</h1>
-      <p>{{ store.selectedTender?.description }}</p>
+      <div class="tender-details">
+        <h1>{{ store.selectedTender?.title }}</h1>
+        <p>{{ store.selectedTender?.description }}</p>
+      </div>
     </ContentWrapper>
   </div>
 </template>
