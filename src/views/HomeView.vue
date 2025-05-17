@@ -5,16 +5,28 @@ import TenderList from '@/components/TenderList.vue'
 import Paginator from '@/components/Paginator.vue'
 
 import { useItemsStore } from '@/stores/itemsStore'
+import { useRoute, useRouter } from 'vue-router'
 
 const store = useItemsStore()
+const route = useRoute()
+const router = useRouter()
 const searchQuery = ref('')
 
 onMounted(() => {
-  store.loadAllItems() // первая страница
+  const initialPage = Number(route.query.page) || 1
+  store.setPage(initialPage)
+  store.loadAllItems()
 })
 
-const changePage = (page: number) => {
-  store.setPage(page)
+const changePage = (newPage: number) => {
+  store.setPage(newPage)
+
+  router.replace({
+    query: {
+      ...route.query,
+      page: String(newPage),
+    },
+  })
 }
 </script>
 
