@@ -17,26 +17,24 @@ export async function fetchData<T>(url: string, options: RequestInit = {}): Prom
 
     if (!response.ok) {
       const errorText = await response.text()
-      return { data: null, error: `API error: ${response.status} - ${errorText}` }
-    }
-
-    // ✅ Проверка на пустой ответ
-    const contentLength = response.headers.get('content-length')
-    if (contentLength === '0') {
-      return { data: null, error: 'Empty response from server' }
+      return {
+        data: null,
+        error: `API error: ${response.status} ${response.statusText} - ${errorText}`,
+      }
     }
 
     const text = await response.text()
+
     if (!text) {
-      return { data: null, error: 'No content received from API' }
+      return { data: null, error: 'Empty response body from server' }
     }
 
     const data = JSON.parse(text)
     return { data, error: null }
-  } catch (err) {
+  } catch (error) {
     return {
       data: null,
-      error: err instanceof Error ? err.message : String(err),
+      error: error instanceof Error ? error.message : String(error),
     }
   }
 }
