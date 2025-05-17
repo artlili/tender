@@ -34,7 +34,13 @@ const changePage = (newPage: number) => {
 <template>
   <div class="container">
     <SearchInput v-model="searchQuery" placeholder="Поиск..." />
-    <ContentWrapper :isLoading="store.isLoading" :hasData="!!store.currentPage">
+    <ContentWrapper
+      :is-loading="store.isLoading"
+      :has-data="store.filteredItems.length > 0"
+      :emptyMessage="
+        store.isFiltered ? 'Ничего не найдено по вашему запросу' : 'Список тендеров пуст'
+      "
+    >
       <TenderList :items="store.filteredItems" :page="store.currentPage" />
       <Paginator :page="store.currentPage" :totalPages="store.totalPages" @change="changePage" />
     </ContentWrapper>

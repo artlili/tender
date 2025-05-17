@@ -26,7 +26,7 @@ export const useItemsStore = defineStore('items', {
     error: null as string | null,
   }),
   getters: {
-    filteredAllItems(state) {
+    filteredAllItems(state): Item[] {
       if (!state.searchQuery) return state.allItems
       return state.allItems.filter((item) =>
         item.title.toLowerCase().includes(state.searchQuery.toLowerCase()),
@@ -35,11 +35,27 @@ export const useItemsStore = defineStore('items', {
 
     filteredItems(state): Item[] {
       const start = (state.currentPage - 1) * state.itemsPerPage
-      return this.filteredAllItems.slice(start, start + state.itemsPerPage)
+      const filtered = !state.searchQuery
+        ? state.allItems
+        : state.allItems.filter((item) =>
+            item.title.toLowerCase().includes(state.searchQuery.toLowerCase()),
+          )
+
+      return filtered.slice(start, start + state.itemsPerPage)
     },
 
     totalPages(state): number {
-      return Math.ceil(this.filteredAllItems.length / state.itemsPerPage)
+      const filtered = !state.searchQuery
+        ? state.allItems
+        : state.allItems.filter((item) =>
+            item.title.toLowerCase().includes(state.searchQuery.toLowerCase()),
+          )
+
+      return Math.ceil(filtered.length / state.itemsPerPage)
+    },
+
+    isFiltered(state): boolean {
+      return state.searchQuery.trim().length > 0
     },
   },
   actions: {
