@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import SearchInput from '@/components/TenderSearch.vue'
 import TenderList from '@/components/TenderList.vue'
-import Paginator from '@/components/Paginator.vue'
+import TenderPaginator from '@/components/TenderPaginator.vue'
 
 import { useItemsStore } from '@/stores/itemsStore'
 import { useRoute, useRouter } from 'vue-router'
@@ -42,7 +42,11 @@ const changePage = (newPage: number) => {
       "
     >
       <TenderList :items="store.filteredItems" :page="store.currentPage" />
-      <Paginator :page="store.currentPage" :totalPages="store.totalPages" @change="changePage" />
+      <TenderPaginator
+        :page="store.currentPage"
+        :totalPages="store.totalPages"
+        @change="changePage"
+      />
     </ContentWrapper>
   </div>
 </template>
