@@ -3,7 +3,9 @@
   <Transition name="fade" mode="out-in">
     <div class="tenders-grid" :key="page">
       <div v-for="item in items.slice(0, 30)" :key="item.id" class="tender-card">
-        <h3>{{ item.title }}</h3>
+        <router-link :to="`/tenders/${item.id}`">
+          <h3>{{ item.title }}</h3>
+        </router-link>
         <p>{{ item.description }}</p>
       </div>
     </div>
