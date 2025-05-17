@@ -1,21 +1,25 @@
 <template>
-  <div class="tender-details" v-if="tender">
-    <h1>{{ tender.title }}</h1>
-    <p>{{ tender.description }}</p>
+  <div v-if="store.isLoading">Загрузка...</div>
+  <div v-else-if="store.selectedTender">
+    <h1>{{ store.selectedTender.title }}</h1>
+    <p>{{ store.selectedTender.description }}</p>
   </div>
-  <div v-else>Загрузка...</div>
+  <div v-else>
+    <p>Тендер не найден</p>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { onMounted } from 'vue'
 import { useItemsStore } from '@/stores/itemsStore'
 
 const route = useRoute()
 const store = useItemsStore()
 
-const tender = computed(() => {
-  return store.allItems.find((item) => item.id === Number(route.params.id))
+onMounted(() => {
+  const id = Number(route.params.id)
+  store.loadTenderById(id)
 })
 </script>
 

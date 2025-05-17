@@ -20,6 +20,7 @@ export const useItemsStore = defineStore('items', {
     allItems: [] as Item[],
     itemsPerPage: 30,
     currentPage: 1,
+    selectedTender: null as Item | null,
     isLoading: false,
     error: null as string | null,
   }),
@@ -38,7 +39,7 @@ export const useItemsStore = defineStore('items', {
       this.isLoading = true
       this.error = null
 
-      const { data, error } = await fetchData<ApiResponse>(`/api/list/?page=2`)
+      const { data, error } = await fetchData<ApiResponse>(`/list/?page=2`)
 
       if (error) {
         this.error = error
@@ -49,8 +50,25 @@ export const useItemsStore = defineStore('items', {
 
       this.isLoading = false
     },
+
     setPage(page: number) {
       this.currentPage = page
+    },
+
+    async loadTenderById(id: number) {
+      this.isLoading = true
+      this.error = null
+      this.selectedTender = null
+
+      const { data, error } = await fetchData<Item>(`/element/?id=${id}`)
+
+      if (error) {
+        this.error = error
+      } else {
+        this.selectedTender = data
+      }
+
+      this.isLoading = false
     },
   },
 })
